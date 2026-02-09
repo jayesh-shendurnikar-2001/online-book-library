@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 
 export default function App() {
@@ -18,6 +19,8 @@ export default function App() {
         }
       />
 
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
