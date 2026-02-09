@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
 import BrowseBooks from "./pages/BrowseBooks";
 import BookDetails from "./pages/BookDetails";
+import AddBook from "./pages/AddBook";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -49,6 +50,17 @@ export default function App() {
         }
       />
 
+      <Route
+        path="/add-book"
+        element={
+          <>
+            <Navbar />
+            <AddBook />
+          </>
+        }
+      />
+
+      {/* 404 Route WITHOUT Navbar */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
