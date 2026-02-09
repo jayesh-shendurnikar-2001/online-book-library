@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-
+   // state for hamburger menu close on desktop and open in mobile
+  const [open, setOpen] = useState(false); 
+ 
   return (
     <nav
       className="bg-gray-200  px-6 py-4"

@@ -3,27 +3,37 @@ import { addBook } from "../features/booksSlice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+// Default image if user does not provide one
 const DEFAULT_IMAGE =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3JKqrQRlKbSAGPyewnePY0TmNzWTeNTyYcg&s";
 
 export default function AddBook() {
+  // Local state to store form data
   const [form, setForm] = useState({});
+
+  // Redux dispatch function
   const dispatch = useDispatch();
+
+  // Navigation function from react-router
   const navigate = useNavigate();
 
+  // Function runs when form is submitted
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page reload
 
+    // checking required fields
     if (!form.title || !form.author || !form.category || !form.rating) {
       alert("All fields required");
       return;
     }
 
+    // rating must be between 1 and 5
     if (form.rating < 1 || form.rating > 5) {
       alert("Rating must be between 1 and 5");
       return;
     }
 
+    // Dispatch addBook action to Redux store
     dispatch(
       addBook({
         ...form,
@@ -33,13 +43,16 @@ export default function AddBook() {
       })
     );
 
+    // Navigation function from react-router
     navigate("/books");
   }
 
   return (
+    // Form element with submit handler
     <form onSubmit={handleSubmit} className="p-6 space-y-3">
-
-      <label>Book Title <span className="text-red-600">*</span></label>
+      <label>
+        Book Title <span className="text-red-600">*</span>
+      </label>
       <input
         required
         placeholder="Title"
@@ -47,7 +60,9 @@ export default function AddBook() {
         onChange={(e) => setForm({ ...form, title: e.target.value })}
       />
 
-      <label>Author Name <span className="text-red-600">*</span></label>
+      <label>
+        Author Name <span className="text-red-600">*</span>
+      </label>
       <input
         required
         placeholder="Author"
@@ -55,7 +70,9 @@ export default function AddBook() {
         onChange={(e) => setForm({ ...form, author: e.target.value })}
       />
 
-      <label>Select Category <span className="text-red-600">*</span></label>
+      <label>
+        Select Category <span className="text-red-600">*</span>
+      </label>
       <select
         required
         className="border p-2 w-full"
@@ -72,7 +89,9 @@ export default function AddBook() {
         <option value="Coding">Coding</option>
       </select>
 
-      <label>Rating <span className="text-red-600">*</span></label>
+      <label>
+        Rating <span className="text-red-600">*</span>
+      </label>
       <input
         required
         type="float"
@@ -95,6 +114,7 @@ export default function AddBook() {
         onChange={(e) => setForm({ ...form, description: e.target.value })}
       />
 
+      {/* Submit Button */}
       <button
         className="
         bg-green-500 text-white px-5 py-2 rounded-lg

@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 const categories = ["Fiction", "Non-Fiction", "Sci-Fi", "Adventure", "Coding"];
 
 export default function Home() {
-  // 🔥 Redux se books
+  // Redux se books
   const books = useSelector((state) => state.books);
 
+// showing books whose rating more than 4
   const popularBooks = books.filter((book) => Number(book.rating) > 3);
 
   return (
